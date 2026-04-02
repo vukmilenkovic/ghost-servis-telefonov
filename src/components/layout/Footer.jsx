@@ -12,6 +12,7 @@ function Footer({ title, tagline, logoSrc }) {
       </div>
       <div className="footer-links">
         <Link to="/">Domov</Link>
+        <Link to="/servis">Servis</Link>
         <Link to="/storitve">Storitve</Link>
         <Link to="/cenik">Cenik</Link>
         <Link to="/kontakt">Kontakt</Link>

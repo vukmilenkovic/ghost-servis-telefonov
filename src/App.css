@@ -397,7 +397,9 @@ textarea:focus {
 .benefit-grid,
 .review-grid,
 .device-gallery,
-.channel-grid {
+.channel-grid,
+.servis-brand-grid,
+.servis-model-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.85rem;
@@ -410,7 +412,8 @@ textarea:focus {
 .channel-card,
 .contact-card,
 .contact-form,
-.pricing-table-wrap {
+.pricing-table-wrap,
+.servis-model-card {
   border-radius: var(--radius-sm);
   border: 1px solid var(--line);
   background: #fff;
@@ -453,6 +456,76 @@ textarea:focus {
   font-family: 'Sora', 'Segoe UI', sans-serif;
   color: var(--primary-strong);
   font-weight: 700;
+}
+
+.servis-brand-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(150deg, #f8fbf3 0%, #edf5df 100%);
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.servis-brand-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.servis-brand-card h3 {
+  margin: 0;
+  font-family: 'Sora', 'Segoe UI', sans-serif;
+}
+
+.servis-brand-card p {
+  margin: 0.5rem 0 0;
+  color: var(--ink-muted);
+}
+
+.servis-model-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.servis-model-toolbar p {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+.servis-model-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #f0f5e9 0%, #e0e9d2 100%);
+  padding: 0.45rem;
+}
+
+.servis-model-card h3 {
+  margin: 0.75rem 0 0;
+  font-family: 'Sora', 'Segoe UI', sans-serif;
+  font-size: 1rem;
+}
+
+.servis-model-placeholder {
+  height: 220px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-family: 'Sora', 'Segoe UI', sans-serif;
+  color: var(--ink-muted);
+  background: repeating-linear-gradient(
+    -45deg,
+    #f6f9f1,
+    #f6f9f1 12px,
+    #e9efdf 12px,
+    #e9efdf 24px
+  );
 }
 
 .service-card dl {
@@ -686,7 +759,9 @@ textarea:focus {
 .review-grid .reveal-stagger:nth-child(2),
 .faq-list .reveal-stagger:nth-child(2),
 .device-gallery .reveal-stagger:nth-child(2),
-.channel-grid .reveal-stagger:nth-child(2) {
+.channel-grid .reveal-stagger:nth-child(2),
+.servis-brand-grid .reveal-stagger:nth-child(2),
+.servis-model-grid .reveal-stagger:nth-child(2) {
   animation-delay: 0.07s;
 }
 
@@ -696,7 +771,9 @@ textarea:focus {
 .review-grid .reveal-stagger:nth-child(3),
 .faq-list .reveal-stagger:nth-child(3),
 .device-gallery .reveal-stagger:nth-child(3),
-.channel-grid .reveal-stagger:nth-child(3) {
+.channel-grid .reveal-stagger:nth-child(3),
+.servis-brand-grid .reveal-stagger:nth-child(3),
+.servis-model-grid .reveal-stagger:nth-child(3) {
   animation-delay: 0.14s;
 }
 
@@ -746,7 +823,9 @@ textarea:focus {
   .review-grid,
   .contact,
   .device-gallery,
-  .channel-grid {
+  .channel-grid,
+  .servis-brand-grid,
+  .servis-model-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -807,7 +886,9 @@ textarea:focus {
   .stats,
   .contact,
   .device-gallery,
-  .channel-grid {
+  .channel-grid,
+  .servis-brand-grid,
+  .servis-model-grid {
     grid-template-columns: 1fr;
   }
 

@@ -1,7 +1,7 @@
 ﻿export const siteContent = {
   topBar: {
-    workingHours: 'Odprto pon-pet 08:00-20:00 | sob 09:00-14:00',
-    fastContact: '+386 40 123 456 | Odgovor na WhatsApp v 15 minutah',
+    workingHours: 'Odprto pon-ned 07:00-20:00',
+    fastContact: '+386 71 602 921 | Odgovor na WhatsApp v 15 minutah',
   },
   brand: {
     title: 'Ghost Servis',
@@ -9,6 +9,7 @@
   },
   navigation: [
     { to: '/', label: 'Domov' },
+    { to: '/servis', label: 'Servis' },
     { to: '/storitve', label: 'Storitve' },
     { to: '/cenik', label: 'Cenik' },
     { to: '/kontakt', label: 'Kontakt' },
@@ -190,6 +191,21 @@
         'Od hitrih popravil do zahtevne diagnostike matičnih plošč. Vsak poseg zaključimo s kontrolo kakovosti in testiranjem funkcij.',
     },
     galleryTitle: 'Podprti modeli in najnovejše naprave',
+  },
+  servisPage: {
+    intro: {
+      kicker: 'Servis naprav',
+      title: 'Izberi znamko in model naprave',
+      description:
+        'Najprej izberi znamko. '
+    },
+    brands: [
+      { id: 'apple', label: 'Apple / iPhone' },
+      { id: 'samsung', label: 'Samsung' },
+      { id: 'huawei', label: 'Huawei' },
+      { id: 'readme', label: 'Readme' },
+      { id: 'realme', label: 'RealMe' },
+    ],
   },
   pricingPage: {
     intro: {
