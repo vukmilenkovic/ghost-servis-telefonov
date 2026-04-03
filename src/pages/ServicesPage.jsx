@@ -1,41 +1,98 @@
 ﻿import PageIntro from '../components/common/PageIntro'
-import ServicesSection from '../components/sections/ServicesSection'
-import ProcessSection from '../components/sections/ProcessSection'
-import DeviceGallerySection from '../components/sections/DeviceGallerySection'
-import { siteContent } from '../data/siteContent'
-import iphone16Pro from '../assets/images/iPhone_16/iPhone 16 Pro/iPhone 16 Pro - Desert Titanium - Portrait.png'
-import iphone16 from '../assets/images/iPhone_16/iPhone 16/iPhone 16 - Ultramarine - Portrait.png'
-import iphone15ProMax from '../assets/images/iPhone_15/iPhone 15 Pro Max/iPhone 15 Pro Max - Natural Titanium - Portrait.png'
+import ServiceCategoryShowcase from '../components/sections/ServiceCategoryShowcase'
 
-const featuredDevices = [
+const serviceCategories = [
   {
-    name: 'iPhone 16 Pro',
-    image: iphone16Pro,
-    note: 'Menjava zaslona, baterije in napredna diagnostika matične plošče.',
+    slug: 'zasloni',
+    title: 'Zasloni',
+    short: 'ZS',
+    description: 'Menjava razbitega stekla, OLED/LCD panela ter kalibracija prikaza in dotika.',
+    eta: '45-120 min',
+    priceHint: 'od 79 EUR',
+    accent: '#4f8f25',
+    imageSrc: null,
   },
   {
-    name: 'iPhone 16',
-    image: iphone16,
-    note: 'Hitra popravila stekla, polnjenja in kamer v istem dnevu.',
+    slug: 'baterije',
+    title: 'Baterije',
+    short: 'BT',
+    description: 'Hitra menjava baterije z diagnostiko zdravja in preverjanjem porabe energije.',
+    eta: '30-60 min',
+    priceHint: 'od 49 EUR',
+    accent: '#739f28',
+    imageSrc: null,
   },
   {
-    name: 'iPhone 15 Pro Max',
-    image: iphone15ProMax,
-    note: 'Natančna kalibracija po popravilu in test vseh senzorjev.',
+    slug: 'kamere',
+    title: 'Kamere',
+    short: 'KM',
+    description: 'Popravilo zamegljene slike, napak ostrenja, stabilizacije in Face ID modula.',
+    eta: '1 delovni dan',
+    priceHint: 'od 59 EUR',
+    accent: '#3c7b62',
+    imageSrc: null,
+  },
+  {
+    slug: 'zadnja-stekla',
+    title: 'Zadnja stekla',
+    short: 'ZS',
+    description: 'Lasersko odstranjevanje in menjava zadnjega stekla z varnim lepljenjem ohišja.',
+    eta: '2-4 h',
+    priceHint: 'od 69 EUR',
+    accent: '#6f7d2f',
+    imageSrc: null,
+  },
+  {
+    slug: 'zvocniki',
+    title: 'Zvočniki',
+    short: 'ZV',
+    description: 'Tiho predvajanje, hreščanje ali izpad zvoka pri klicih in medijev.',
+    eta: '1-2 h',
+    priceHint: 'od 39 EUR',
+    accent: '#5a8f3e',
+    imageSrc: null,
+  },
+  {
+    slug: 'ohisja',
+    title: 'Ohišja',
+    short: 'OH',
+    description: 'Ravnanje ali menjava ohišja, okvirja in notranjih nosilcev po poškodbah.',
+    eta: '1 dan',
+    priceHint: 'od 89 EUR',
+    accent: '#6a8250',
+    imageSrc: null,
+  },
+  {
+    slug: 'gumbi',
+    title: 'Gumbi',
+    short: 'GB',
+    description: 'Popravilo tipk za vklop, glasnost, home in stranskih stikal.',
+    eta: '1-2 h',
+    priceHint: 'od 35 EUR',
+    accent: '#456f28',
+    imageSrc: null,
+  },
+  {
+    slug: 'prenos-podatkov',
+    title: 'Prenos podatkov',
+    short: 'PP',
+    description: 'Varen prenos stikov, fotografij, aplikacij in datotek na novo napravo.',
+    eta: '30-120 min',
+    priceHint: 'od 29 EUR',
+    accent: '#2f7c53',
+    imageSrc: null,
   },
 ]
 
 function ServicesPage() {
   return (
     <>
-      {/* <PageIntro
-        kicker={siteContent.servicesPage.intro.kicker}
-        title={siteContent.servicesPage.intro.title}
-        description={siteContent.servicesPage.intro.description}
-      /> */}
-      {/* <ServicesSection section={siteContent.servicesSection} services={siteContent.services} labels={siteContent.commonLabels} /> */}
-      {/* <ProcessSection section={siteContent.processSection} steps={siteContent.processSteps} /> */}
-      {/* <DeviceGallerySection title={siteContent.servicesPage.galleryTitle} devices={featuredDevices} /> */}
+      <PageIntro
+        kicker="Storitve"
+        title="Popravila, ki jih največkrat izvajamo"
+        description="Izberi kategorijo popravila in odpri podrobnosti storitve. Kartice so pripravljene za tvoje fotografije servisov."
+      />
+      <ServiceCategoryShowcase categories={serviceCategories} />
     </>
   )
 }
