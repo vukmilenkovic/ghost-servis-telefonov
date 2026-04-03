@@ -1,6 +1,6 @@
 ﻿import { useMemo, useState } from 'react'
 import { siteContent } from '../data/siteContent'
-import PageIntro from '../components/common/PageIntro'
+
 
 const appleImageModules = import.meta.glob('../assets/images/iPhone_*/**/*.png', {
   eager: true,
@@ -8,7 +8,7 @@ const appleImageModules = import.meta.glob('../assets/images/iPhone_*/**/*.png',
 })
 
 const fallbackModelsByBrand = {
-  samsung: ['Galaxy S24 Ultra', 'Galaxy S24', 'Galaxy S23', 'Galaxy A55', 'Galaxy A35'],
+  samsung: ['Galaxy S24 Ultra', 'Galaxy S24', 'Galaxy S23', 'Galaxy S26', 'Galaxy S26 Ultra' ,'Galaxy A55', 'Galaxy A35' ],
   huawei: ['P60 Pro', 'P50 Pro', 'Mate 50 Pro', 'Nova 11'],
   readme: ['Note 13 Pro', 'Note 12', '13C', '12C'],
   realme: ['GT 6', '12 Pro+', '11 Pro', 'C67'],
@@ -70,11 +70,6 @@ function ServisPage() {
 
   return (
     <>
-      <PageIntro
-        kicker={siteContent.servisPage.intro.kicker}
-        title={siteContent.servisPage.intro.title}
-        description={siteContent.servisPage.intro.description}
-      />
 
       <section className="section reveal">
         {!selectedBrand ? (

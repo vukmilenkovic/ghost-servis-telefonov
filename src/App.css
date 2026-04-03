@@ -691,7 +691,8 @@ textarea:focus {
   margin-top: 1rem;
   padding: 1rem 1.2rem;
   display: flex;
-  justify-content: space-between;
+  /* Changed to space-around on 04.02.2026 */
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;

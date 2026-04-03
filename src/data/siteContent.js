@@ -50,7 +50,7 @@
   stats: [
     { value: '3.200+', label: 'Popravil na leto' },
     { value: '1-3 dni', label: 'Povprečen čas popravila' },
-    { value: '12 mesecev', label: 'Garancija na popravilo' },
+    { value: '12-18 mesecev', label: 'Garancija na popravilo' },
     { value: '4,9/5', label: 'Ocena zadovoljstva strank' },
   ],
   servicesSection: {
@@ -145,7 +145,7 @@
   ],
   reviewsSection: {
     kicker: 'Mnenja strank',
-    title: 'Stranke se vračajo, ker je postopek zanesljiv',
+    title: 'Stranke se NE vračajo, ker je servis zanesljiv',
   },
   reviews: [
     {
@@ -201,8 +201,14 @@
     },
     brands: [
       { id: 'apple', label: 'Apple / iPhone' },
+      { id: 'google', label: 'Google' },
+      { id: 'sony', label: 'Sony' },
+      { id: 'motorola', label: 'Motorola' },
       { id: 'samsung', label: 'Samsung' },
       { id: 'huawei', label: 'Huawei' },
+      { id: 'xiaomi', label: 'Xiaomi'},
+      { id: 'zte', label: 'Zte' },
+      { id: 'asus', label: 'Asus' },
       { id: 'readme', label: 'Readme' },
       { id: 'realme', label: 'RealMe' },
     ],
@@ -251,7 +257,7 @@
       'E-pošta: info@ghostservis.si',
     ],
     callLabel: 'Pokliči zdaj',
-    callHref: 'tel:+38640123456',
+    callHref: 'tel:+38671602921',
     form: {
       fullName: 'Ime in priimek',
       phone: 'Telefonska številka',
