@@ -1,5 +1,8 @@
 ﻿import PageIntro from '../components/common/PageIntro'
 import ServiceCategoryShowcase from '../components/sections/ServiceCategoryShowcase'
+import zasloniImage from '../assets/images/Zasloni/Samusng_ekrani_website.PNG'
+import zadnjaSteklaImage from '../assets/images/Zadnja_stekla/zadnja_stekla_website.PNG'
+import zvocnikiImage from '../assets/images/Zvocniki/Zvocnik.JPEG'
 
 const serviceCategories = [
   {
@@ -10,7 +13,7 @@ const serviceCategories = [
     eta: '45-120 min',
     priceHint: 'od 79 EUR',
     accent: '#4f8f25',
-    imageSrc: null,
+    imageSrc: zasloniImage,
   },
   {
     slug: 'baterije',
@@ -40,7 +43,7 @@ const serviceCategories = [
     eta: '2-4 h',
     priceHint: 'od 69 EUR',
     accent: '#6f7d2f',
-    imageSrc: null,
+    imageSrc: zadnjaSteklaImage,
   },
   {
     slug: 'zvocniki',
@@ -50,7 +53,7 @@ const serviceCategories = [
     eta: '1-2 h',
     priceHint: 'od 39 EUR',
     accent: '#5a8f3e',
-    imageSrc: null,
+    imageSrc: zvocnikiImage,
   },
   {
     slug: 'ohisja',
