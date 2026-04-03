@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom'
+﻿// import { Link } from 'react-router-dom'
 
 function Footer({ title, tagline, logoSrc }) {
   return (
@@ -10,12 +10,7 @@ function Footer({ title, tagline, logoSrc }) {
           <p>{tagline}</p>
         </div>
       </div>
-      <div className="footer-links">
-        <Link to="/">Domov</Link>
-        <Link to="/storitve">Storitve</Link>
-        <Link to="/cenik">Cenik</Link>
-        <Link to="/kontakt">Kontakt</Link>
-      </div>
+    {/* TODO: Create a real footer*/}
     </footer>
   )
 }

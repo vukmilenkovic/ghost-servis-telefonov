@@ -28,14 +28,14 @@ const featuredDevices = [
 function ServicesPage() {
   return (
     <>
-      <PageIntro
+      {/* <PageIntro
         kicker={siteContent.servicesPage.intro.kicker}
         title={siteContent.servicesPage.intro.title}
         description={siteContent.servicesPage.intro.description}
-      />
-      <ServicesSection section={siteContent.servicesSection} services={siteContent.services} labels={siteContent.commonLabels} />
-      <ProcessSection section={siteContent.processSection} steps={siteContent.processSteps} />
-      <DeviceGallerySection title={siteContent.servicesPage.galleryTitle} devices={featuredDevices} />
+      /> */}
+      {/* <ServicesSection section={siteContent.servicesSection} services={siteContent.services} labels={siteContent.commonLabels} /> */}
+      {/* <ProcessSection section={siteContent.processSection} steps={siteContent.processSteps} /> */}
+      {/* <DeviceGallerySection title={siteContent.servicesPage.galleryTitle} devices={featuredDevices} /> */}
     </>
   )
 }

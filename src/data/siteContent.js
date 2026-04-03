@@ -1,7 +1,7 @@
 ﻿export const siteContent = {
   topBar: {
-    workingHours: 'Odprto pon-pet 08:00-20:00 | sob 09:00-14:00',
-    fastContact: '+386 40 123 456 | Odgovor na WhatsApp v 15 minutah',
+    workingHours: 'Odprto pon-ned 07:00-20:00',
+    fastContact: '+386 71 602 921 | Odgovor na WhatsApp v 15 minutah',
   },
   brand: {
     title: 'Ghost Servis',
@@ -9,6 +9,7 @@
   },
   navigation: [
     { to: '/', label: 'Domov' },
+    { to: '/servis', label: 'Servis' },
     { to: '/storitve', label: 'Storitve' },
     { to: '/cenik', label: 'Cenik' },
     { to: '/kontakt', label: 'Kontakt' },
@@ -49,7 +50,7 @@
   stats: [
     { value: '3.200+', label: 'Popravil na leto' },
     { value: '1-3 dni', label: 'Povprečen čas popravila' },
-    { value: '12 mesecev', label: 'Garancija na popravilo' },
+    { value: '12-18 mesecev', label: 'Garancija na popravilo' },
     { value: '4,9/5', label: 'Ocena zadovoljstva strank' },
   ],
   servicesSection: {
@@ -144,7 +145,7 @@
   ],
   reviewsSection: {
     kicker: 'Mnenja strank',
-    title: 'Stranke se vračajo, ker je postopek zanesljiv',
+    title: 'Stranke se NE vračajo, ker je servis zanesljiv',
   },
   reviews: [
     {
@@ -191,6 +192,27 @@
     },
     galleryTitle: 'Podprti modeli in najnovejše naprave',
   },
+  servisPage: {
+    intro: {
+      kicker: 'Servis naprav',
+      title: 'Izberi znamko in model naprave',
+      description:
+        'Najprej izberi znamko. '
+    },
+    brands: [
+      { id: 'apple', label: 'Apple / iPhone' },
+      { id: 'google', label: 'Google' },
+      { id: 'sony', label: 'Sony' },
+      { id: 'motorola', label: 'Motorola' },
+      { id: 'samsung', label: 'Samsung' },
+      { id: 'huawei', label: 'Huawei' },
+      { id: 'xiaomi', label: 'Xiaomi'},
+      { id: 'zte', label: 'Zte' },
+      { id: 'asus', label: 'Asus' },
+      { id: 'readme', label: 'Readme' },
+      { id: 'realme', label: 'RealMe' },
+    ],
+  },
   pricingPage: {
     intro: {
       kicker: 'Cenik',
@@ -235,7 +257,7 @@
       'E-pošta: info@ghostservis.si',
     ],
     callLabel: 'Pokliči zdaj',
-    callHref: 'tel:+38640123456',
+    callHref: 'tel:+38671602921',
     form: {
       fullName: 'Ime in priimek',
       phone: 'Telefonska številka',

@@ -25,7 +25,7 @@ function SiteLayout() {
         <Outlet />
       </main>
 
-      <Footer title={siteContent.footer.title} tagline={siteContent.footer.tagline} logoSrc={logoImage} />
+      {/* <Footer title={siteContent.footer.title} tagline={siteContent.footer.tagline} logoSrc={logoImage} /> */}
       <MobileCta label={siteContent.ctas.mobile} />
     </div>
   )
