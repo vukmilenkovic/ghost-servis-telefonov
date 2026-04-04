@@ -4,6 +4,7 @@ import SiteLayout from './layouts/SiteLayout'
 import HomePage from './pages/HomePage'
 import ServisPage from './pages/ServisPage'
 import ServicesPage from './pages/ServicesPage'
+import ServiceDetailPlaceholderPage from './pages/ServiceDetailPlaceholderPage'
 import PricingPage from './pages/PricingPage'
 import ContactPage from './pages/ContactPage'
 import NotFoundPage from './pages/NotFoundPage'
@@ -16,6 +17,7 @@ function App() {
         <Route path="/domov" element={<Navigate to="/" replace />} />
         <Route path="/servis" element={<ServisPage />} />
         <Route path="/storitve" element={<ServicesPage />} />
+        <Route path="/storitve/:serviceSlug" element={<ServiceDetailPlaceholderPage />} />
         <Route path="/cenik" element={<PricingPage />} />
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="*" element={<NotFoundPage />} />
