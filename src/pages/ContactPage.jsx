@@ -1,18 +1,20 @@
-﻿import PageIntro from '../components/common/PageIntro'
+import PageIntro from '../components/common/PageIntro'
 import ContactChannelsSection from '../components/sections/ContactChannelsSection'
 import ContactSection from '../components/sections/ContactSection'
-import { siteContent } from '../data/siteContent'
+import { useSiteContent } from '../content/SiteContentContext.jsx'
 
 function ContactPage() {
+  const { content } = useSiteContent()
+
   return (
     <>
       <PageIntro
-        kicker={siteContent.contactPage.intro.kicker}
-        title={siteContent.contactPage.intro.title}
-        description={siteContent.contactPage.intro.description}
+        kicker={content.contactPage.intro.kicker}
+        title={content.contactPage.intro.title}
+        description={content.contactPage.intro.description}
       />
-      <ContactChannelsSection channels={siteContent.contactPage.channels} />
-      <ContactSection section={siteContent.contactSection} />
+      <ContactChannelsSection channels={content.contactPage.channels} />
+      <ContactSection section={content.contactSection} />
     </>
   )
 }

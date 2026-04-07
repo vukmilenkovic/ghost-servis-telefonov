@@ -1,22 +1,24 @@
-﻿import PageIntro from '../components/common/PageIntro'
+import PageIntro from '../components/common/PageIntro'
 import PricingTableSection from '../components/sections/PricingTableSection'
 import FaqSection from '../components/sections/FaqSection'
-import { siteContent } from '../data/siteContent'
+import { useSiteContent } from '../content/SiteContentContext.jsx'
 
 function PricingPage() {
+  const { content } = useSiteContent()
+
   return (
     <>
       <PageIntro
-        kicker={siteContent.pricingPage.intro.kicker}
-        title={siteContent.pricingPage.intro.title}
-        description={siteContent.pricingPage.intro.description}
+        kicker={content.pricingPage.intro.kicker}
+        title={content.pricingPage.intro.title}
+        description={content.pricingPage.intro.description}
       />
       <PricingTableSection
-        intro={siteContent.pricingPage.intro}
-        rows={siteContent.pricingPage.table}
-        notes={siteContent.pricingPage.notes}
+        intro={content.pricingPage.intro}
+        rows={content.pricingPage.table}
+        notes={content.pricingPage.notes}
       />
-      <FaqSection section={siteContent.faqSection} faqs={siteContent.faqs} />
+      <FaqSection section={content.faqSection} faqs={content.faqs} />
     </>
   )
 }

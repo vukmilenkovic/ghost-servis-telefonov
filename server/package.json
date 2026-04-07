@@ -1,0 +1,23 @@
+{
+  "name": "ghost-servis-telefonov-api",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:generate": "prisma generate",
+    "db:seed": "node scripts/import-site-content.mjs"
+  },
+  "dependencies": {
+    "@fastify/cors": "^10.1.0",
+    "@prisma/client": "^6.7.0",
+    "dotenv": "^16.6.1",
+    "fastify": "^5.6.1"
+  },
+  "devDependencies": {
+    "prisma": "^6.7.0"
+  }
+}

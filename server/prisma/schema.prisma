@@ -1,0 +1,346 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum BookingFieldCode {
+  device_type
+  brand
+  issue
+}
+
+enum ContactFieldCode {
+  full_name
+  phone
+  model
+  issue
+}
+
+enum SectionCode {
+  services
+  benefits
+  process
+  reviews
+  faq
+}
+
+enum PageCode {
+  services
+  servis
+  pricing
+  contact
+}
+
+model SiteSettings {
+  id               Int      @id @default(1)
+  workingHours     String   @map("working_hours")
+  fastContact      String   @map("fast_contact")
+  brandTitle       String   @map("brand_title")
+  brandSubtitle    String   @map("brand_subtitle")
+  ctaPrimaryHeader String   @map("cta_primary_header")
+  ctaHeroPrimary   String   @map("cta_hero_primary")
+  ctaHeroSecondary String   @map("cta_hero_secondary")
+  ctaMobile        String   @map("cta_mobile")
+  commonLabelTime  String   @map("common_label_time")
+  commonLabelPrice String   @map("common_label_price")
+  footerTitle      String   @map("footer_title")
+  footerTagline    String   @map("footer_tagline")
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy        String   @default("system") @map("updated_by")
+
+  @@map("site_settings")
+}
+
+model NavigationItem {
+  id        String   @id @default(uuid()) @db.Uuid
+  label     String
+  route     String   @unique
+  sortOrder Int      @unique @map("sort_order")
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy String   @default("system") @map("updated_by")
+
+  @@map("navigation_items")
+}
+
+model HeroContent {
+  id          Int      @id @default(1)
+  kicker      String
+  title       String
+  titleAccent String   @map("title_accent")
+  description String
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy   String   @default("system") @map("updated_by")
+
+  @@map("hero_content")
+}
+
+model BookingForm {
+  id          Int                @id @default(1)
+  title       String
+  description String
+  submitLabel String             @map("submit_label")
+  fields      BookingFormField[]
+  createdAt   DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime           @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy   String             @default("system") @map("updated_by")
+
+  @@map("booking_form")
+}
+
+model BookingFormField {
+  id          String                   @id @default(uuid()) @db.Uuid
+  bookingFormId Int                    @default(1) @map("booking_form_id")
+  code        BookingFieldCode         @unique
+  label       String
+  placeholder String
+  sortOrder   Int                      @unique @map("sort_order")
+  options     BookingFormFieldOption[]
+  bookingForm BookingForm              @relation(fields: [bookingFormId], references: [id], onDelete: Cascade)
+  createdAt   DateTime                 @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime                 @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy   String                   @default("system") @map("updated_by")
+
+  @@map("booking_form_fields")
+}
+
+model BookingFormFieldOption {
+  id        String           @id @default(uuid()) @db.Uuid
+  fieldId   String           @map("field_id") @db.Uuid
+  value     String
+  sortOrder Int              @map("sort_order")
+  field     BookingFormField @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+  createdAt DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime         @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy String           @default("system") @map("updated_by")
+
+  @@unique([fieldId, value])
+  @@unique([fieldId, sortOrder])
+  @@map("booking_form_field_options")
+}
+
+model SectionHeader {
+  id        String      @id @default(uuid()) @db.Uuid
+  code      SectionCode @unique
+  kicker    String
+  title     String
+  createdAt DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime    @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy String      @default("system") @map("updated_by")
+
+  @@map("section_headers")
+}
+
+model Stat {
+  id        String   @id @default(uuid()) @db.Uuid
+  value     String
+  label     String
+  sortOrder Int      @unique @map("sort_order")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy String   @default("system") @map("updated_by")
+
+  @@map("stats")
+}
+
+model Service {
+  id        String       @id @default(uuid()) @db.Uuid
+  slug      String       @unique
+  title     String
+  copy      String
+  etaText   String       @map("eta_text")
+  priceText String       @map("price_text")
+  sortOrder Int          @unique @map("sort_order")
+  isActive  Boolean      @default(true) @map("is_active")
+  pricingRows PricingRow[]
+  createdAt DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime     @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy String       @default("system") @map("updated_by")
+
+  @@map("services")
+}
+
+model Benefit {
+  id        String   @id @default(uuid()) @db.Uuid
+  title     String
+  copy      String
+  sortOrder Int      @unique @map("sort_order")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy String   @default("system") @map("updated_by")
+
+  @@map("benefits")
+}
+
+model ProcessStep {
+  id        String   @id @default(uuid()) @db.Uuid
+  title     String
+  text      String
+  sortOrder Int      @unique @map("sort_order")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy String   @default("system") @map("updated_by")
+
+  @@map("process_steps")
+}
+
+model Review {
+  id          String   @id @default(uuid()) @db.Uuid
+  authorName  String   @map("author_name")
+  text        String
+  sortOrder   Int      @unique @map("sort_order")
+  isPublished Boolean  @default(true) @map("is_published")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy   String   @default("system") @map("updated_by")
+
+  @@map("reviews")
+}
+
+model Faq {
+  id          String   @id @default(uuid()) @db.Uuid
+  question    String   @map("question")
+  answer      String   @map("answer")
+  sortOrder   Int      @unique @map("sort_order")
+  isPublished Boolean  @default(true) @map("is_published")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy   String   @default("system") @map("updated_by")
+
+  @@map("faqs")
+}
+
+model PageIntro {
+  id          String   @id @default(uuid()) @db.Uuid
+  pageCode    PageCode @unique @map("page_code")
+  kicker      String
+  title       String
+  description String
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy   String   @default("system") @map("updated_by")
+
+  @@map("page_intros")
+}
+
+model ServicesPageMeta {
+  id          Int      @id @default(1)
+  galleryTitle String  @map("gallery_title")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy   String   @default("system") @map("updated_by")
+
+  @@map("services_page_meta")
+}
+
+model ServiceBrand {
+  id        String   @id @default(uuid()) @db.Uuid
+  code      String   @unique
+  label     String
+  sortOrder Int      @unique @map("sort_order")
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy String   @default("system") @map("updated_by")
+
+  @@map("service_brands")
+}
+
+model PricingRow {
+  id          String   @id @default(uuid()) @db.Uuid
+  serviceId   String?  @map("service_id") @db.Uuid
+  serviceLabel String  @map("service_label")
+  estimateText String  @map("estimate_text")
+  etaText      String  @map("eta_text")
+  sortOrder    Int     @unique @map("sort_order")
+  service      Service? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy    String   @default("system") @map("updated_by")
+
+  @@map("pricing_rows")
+}
+
+model PricingNote {
+  id        String   @id @default(uuid()) @db.Uuid
+  note      String
+  sortOrder Int      @unique @map("sort_order")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy String   @default("system") @map("updated_by")
+
+  @@map("pricing_notes")
+}
+
+model ContactPageChannel {
+  id        String   @id @default(uuid()) @db.Uuid
+  title     String
+  value     String
+  detail    String
+  sortOrder Int      @unique @map("sort_order")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy String   @default("system") @map("updated_by")
+
+  @@map("contact_page_channels")
+}
+
+model ContactSection {
+  id        Int     @id @default(1)
+  title     String
+  text      String
+  callLabel String  @map("call_label")
+  callHref  String  @map("call_href")
+  details   ContactSectionDetail[]
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy String   @default("system") @map("updated_by")
+
+  @@map("contact_section")
+}
+
+model ContactSectionDetail {
+  id               String         @id @default(uuid()) @db.Uuid
+  contactSectionId Int            @default(1) @map("contact_section_id")
+  detail           String
+  sortOrder        Int            @unique @map("sort_order")
+  contactSection   ContactSection @relation(fields: [contactSectionId], references: [id], onDelete: Cascade)
+  createdAt        DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime       @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy        String         @default("system") @map("updated_by")
+
+  @@map("contact_section_details")
+}
+
+model ContactForm {
+  id          Int                @id @default(1)
+  submitLabel String             @map("submit_label")
+  fields      ContactFormField[]
+  createdAt   DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime           @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy   String             @default("system") @map("updated_by")
+
+  @@map("contact_form")
+}
+
+model ContactFormField {
+  id            String          @id @default(uuid()) @db.Uuid
+  contactFormId Int             @default(1) @map("contact_form_id")
+  code          ContactFieldCode @unique
+  label         String
+  placeholder   String
+  sortOrder     Int             @unique @map("sort_order")
+  contactForm   ContactForm     @relation(fields: [contactFormId], references: [id], onDelete: Cascade)
+  createdAt     DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime        @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy     String          @default("system") @map("updated_by")
+
+  @@map("contact_form_fields")
+}

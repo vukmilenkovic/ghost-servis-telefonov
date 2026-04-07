@@ -1,26 +1,28 @@
-﻿import HeroSection from '../components/sections/HeroSection'
+import HeroSection from '../components/sections/HeroSection'
 import StatsSection from '../components/sections/StatsSection'
 import ServicesSection from '../components/sections/ServicesSection'
 import BenefitsSection from '../components/sections/BenefitsSection'
 import ProcessSection from '../components/sections/ProcessSection'
 import ReviewsSection from '../components/sections/ReviewsSection'
 import FaqSection from '../components/sections/FaqSection'
-import { siteContent } from '../data/siteContent'
+import { useSiteContent } from '../content/SiteContentContext.jsx'
 
 function HomePage() {
+  const { content } = useSiteContent()
+
   return (
     <>
-      <HeroSection hero={siteContent.hero} ctas={siteContent.ctas} bookingForm={siteContent.bookingForm} />
-      <StatsSection stats={siteContent.stats} />
+      <HeroSection hero={content.hero} ctas={content.ctas} bookingForm={content.bookingForm} />
+      <StatsSection stats={content.stats} />
       <ServicesSection
-        section={siteContent.servicesSection}
-        services={siteContent.services.slice(0, 3)}
-        labels={siteContent.commonLabels}
+        section={content.servicesSection}
+        services={content.services.slice(0, 3)}
+        labels={content.commonLabels}
       />
-      <BenefitsSection section={siteContent.benefitsSection} benefits={siteContent.benefits} />
-      <ProcessSection section={siteContent.processSection} steps={siteContent.processSteps} />
-      <ReviewsSection section={siteContent.reviewsSection} reviews={siteContent.reviews} />
-      <FaqSection section={siteContent.faqSection} faqs={siteContent.faqs.slice(0, 3)} />
+      <BenefitsSection section={content.benefitsSection} benefits={content.benefits} />
+      <ProcessSection section={content.processSection} steps={content.processSteps} />
+      <ReviewsSection section={content.reviewsSection} reviews={content.reviews} />
+      <FaqSection section={content.faqSection} faqs={content.faqs.slice(0, 3)} />
     </>
   )
 }

@@ -1,32 +1,36 @@
-﻿import { Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import TopBar from '../components/layout/TopBar'
 import MainHeader from '../components/layout/MainHeader'
-import Footer from '../components/layout/Footer'
 import MobileCta from '../components/layout/MobileCta'
-import { siteContent } from '../data/siteContent'
 import logoImage from '../assets/images/Instagram-profile-logo-2.0.png'
+import { useSiteContent } from '../content/SiteContentContext.jsx'
 
 function SiteLayout() {
+  const { content, isLoading, error } = useSiteContent()
+
   return (
     <div className="site-shell">
       <div className="ambient ambient-left" aria-hidden="true"></div>
       <div className="ambient ambient-right" aria-hidden="true"></div>
 
-      <TopBar workingHours={siteContent.topBar.workingHours} fastContact={siteContent.topBar.fastContact} />
+      <TopBar workingHours={content.topBar.workingHours} fastContact={content.topBar.fastContact} />
 
       <MainHeader
-        brand={siteContent.brand}
-        navigation={siteContent.navigation}
-        ctaLabel={siteContent.ctas.primaryHeader}
+        brand={content.brand}
+        navigation={content.navigation}
+        ctaLabel={content.ctas.primaryHeader}
         logoSrc={logoImage}
       />
+
+      {isLoading ? <p className="section">Nalaganje vsebine...</p> : null}
+      {error ? <p className="section form-note status-error">{error}</p> : null}
 
       <main className="page-main">
         <Outlet />
       </main>
 
-      {/* <Footer title={siteContent.footer.title} tagline={siteContent.footer.tagline} logoSrc={logoImage} /> */}
-      <MobileCta label={siteContent.ctas.mobile} />
+      {/* <Footer title={content.footer.title} tagline={content.footer.tagline} logoSrc={logoImage} /> */}
+      <MobileCta label={content.ctas.mobile} />
     </div>
   )
 }

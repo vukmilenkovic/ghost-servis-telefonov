@@ -1,5 +1,6 @@
-﻿import PageIntro from '../components/common/PageIntro'
+import PageIntro from '../components/common/PageIntro'
 import ServiceCategoryShowcase from '../components/sections/ServiceCategoryShowcase'
+import { useSiteContent } from '../content/SiteContentContext.jsx'
 import zasloniImage from '../assets/images/Zasloni/Samusng_ekrani_website.PNG'
 import zadnjaSteklaImage from '../assets/images/Zadnja_stekla/zadnja_stekla_website.PNG'
 import zvocnikiImage from '../assets/images/Zvocniki/Zvocnik.JPEG'
@@ -47,9 +48,9 @@ const serviceCategories = [
   },
   {
     slug: 'zvocniki',
-    title: 'Zvočniki',
+    title: 'Zvocniki',
     short: 'ZV',
-    description: 'Tiho predvajanje, hreščanje ali izpad zvoka pri klicih in medijev.',
+    description: 'Tiho predvajanje, hrešcanje ali izpad zvoka pri klicih in medijev.',
     eta: '1-2 h',
     priceHint: 'od 39 EUR',
     accent: '#5a8f3e',
@@ -88,12 +89,14 @@ const serviceCategories = [
 ]
 
 function ServicesPage() {
+  const { content } = useSiteContent()
+
   return (
     <>
       <PageIntro
-        kicker="Storitve"
-        title="Popravila, ki jih največkrat izvajamo"
-        description="Izberi kategorijo popravila in odpri podrobnosti storitve. Kartice so pripravljene za tvoje fotografije servisov."
+        kicker={content.servicesPage.intro.kicker}
+        title={content.servicesPage.intro.title}
+        description={content.servicesPage.intro.description}
       />
       <ServiceCategoryShowcase categories={serviceCategories} />
     </>
