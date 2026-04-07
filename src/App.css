@@ -222,6 +222,12 @@ body {
   display: grid;
   grid-template-columns: 1.12fr 0.88fr;
   gap: 1.3rem;
+  background:
+    linear-gradient(120deg, rgba(247, 251, 242, 0.9) 0%, rgba(238, 245, 228, 0.86) 45%, rgba(244, 239, 214, 0.74) 100%),
+    url('./assets/images/General/IMG_9027.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .hero::after,
