@@ -96,17 +96,17 @@ model BookingForm {
 }
 
 model BookingFormField {
-  id          String                   @id @default(uuid()) @db.Uuid
-  bookingFormId Int                    @default(1) @map("booking_form_id")
-  code        BookingFieldCode         @unique
-  label       String
-  placeholder String
-  sortOrder   Int                      @unique @map("sort_order")
-  options     BookingFormFieldOption[]
-  bookingForm BookingForm              @relation(fields: [bookingFormId], references: [id], onDelete: Cascade)
-  createdAt   DateTime                 @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt   DateTime                 @updatedAt @map("updated_at") @db.Timestamptz(6)
-  updatedBy   String                   @default("system") @map("updated_by")
+  id            String                   @id @default(uuid()) @db.Uuid
+  bookingFormId Int                      @default(1) @map("booking_form_id")
+  code          BookingFieldCode         @unique
+  label         String
+  placeholder   String
+  sortOrder     Int                      @unique @map("sort_order")
+  options       BookingFormFieldOption[]
+  bookingForm   BookingForm              @relation(fields: [bookingFormId], references: [id], onDelete: Cascade)
+  createdAt     DateTime                 @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime                 @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy     String                   @default("system") @map("updated_by")
 
   @@map("booking_form_fields")
 }
@@ -151,18 +151,18 @@ model Stat {
 }
 
 model Service {
-  id        String       @id @default(uuid()) @db.Uuid
-  slug      String       @unique
-  title     String
-  copy      String
-  etaText   String       @map("eta_text")
-  priceText String       @map("price_text")
-  sortOrder Int          @unique @map("sort_order")
-  isActive  Boolean      @default(true) @map("is_active")
+  id          String       @id @default(uuid()) @db.Uuid
+  slug        String       @unique
+  title       String
+  copy        String
+  etaText     String       @map("eta_text")
+  priceText   String       @map("price_text")
+  sortOrder   Int          @unique @map("sort_order")
+  isActive    Boolean      @default(true) @map("is_active")
   pricingRows PricingRow[]
-  createdAt DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt DateTime     @updatedAt @map("updated_at") @db.Timestamptz(6)
-  updatedBy String       @default("system") @map("updated_by")
+  createdAt   DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime     @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy   String       @default("system") @map("updated_by")
 
   @@map("services")
 }
@@ -231,11 +231,11 @@ model PageIntro {
 }
 
 model ServicesPageMeta {
-  id          Int      @id @default(1)
-  galleryTitle String  @map("gallery_title")
-  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
-  updatedBy   String   @default("system") @map("updated_by")
+  id           Int      @id @default(1)
+  galleryTitle String   @map("gallery_title")
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy    String   @default("system") @map("updated_by")
 
   @@map("services_page_meta")
 }
@@ -253,13 +253,55 @@ model ServiceBrand {
   @@map("service_brands")
 }
 
+model Tier {
+  tierId        Int             @id @map("tier_id")
+  tier          String
+  services      RepairService[]
+  partQualities PartQuality[]
+  createdAt     DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime        @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy     String          @default("system") @map("updated_by")
+
+  @@map("tiers")
+}
+
+model PartQuality {
+  partId    Int             @id @map("part_id")
+  partType  String          @map("part_type")
+  tierId    Int?            @map("tier_id")
+  tier      Tier?           @relation(fields: [tierId], references: [tierId], onDelete: SetNull)
+  services  RepairService[]
+  createdAt DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime        @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy String          @default("system") @map("updated_by")
+
+  @@index([tierId])
+  @@map("part_quality")
+}
+
+model RepairService {
+  serviceId   Int          @id @map("service_id")
+  serviceName String       @map("servis_name")
+  partId      Int?         @map("part_id")
+  tierId      Int?         @map("tier_id")
+  part        PartQuality? @relation(fields: [partId], references: [partId], onDelete: SetNull)
+  tier        Tier?        @relation(fields: [tierId], references: [tierId], onDelete: SetNull)
+  createdAt   DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime     @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy   String       @default("system") @map("updated_by")
+
+  @@index([partId])
+  @@index([tierId])
+  @@map("repair_services")
+}
+
 model PricingRow {
-  id          String   @id @default(uuid()) @db.Uuid
-  serviceId   String?  @map("service_id") @db.Uuid
-  serviceLabel String  @map("service_label")
-  estimateText String  @map("estimate_text")
-  etaText      String  @map("eta_text")
-  sortOrder    Int     @unique @map("sort_order")
+  id           String   @id @default(uuid()) @db.Uuid
+  serviceId    String?  @map("service_id") @db.Uuid
+  serviceLabel String   @map("service_label")
+  estimateText String   @map("estimate_text")
+  etaText      String   @map("eta_text")
+  sortOrder    Int      @unique @map("sort_order")
   service      Service? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
   createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
@@ -293,15 +335,15 @@ model ContactPageChannel {
 }
 
 model ContactSection {
-  id        Int     @id @default(1)
+  id        Int                    @id @default(1)
   title     String
   text      String
-  callLabel String  @map("call_label")
-  callHref  String  @map("call_href")
+  callLabel String                 @map("call_label")
+  callHref  String                 @map("call_href")
   details   ContactSectionDetail[]
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
-  updatedBy String   @default("system") @map("updated_by")
+  createdAt DateTime               @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime               @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy String                 @default("system") @map("updated_by")
 
   @@map("contact_section")
 }
@@ -331,16 +373,16 @@ model ContactForm {
 }
 
 model ContactFormField {
-  id            String          @id @default(uuid()) @db.Uuid
-  contactFormId Int             @default(1) @map("contact_form_id")
+  id            String           @id @default(uuid()) @db.Uuid
+  contactFormId Int              @default(1) @map("contact_form_id")
   code          ContactFieldCode @unique
   label         String
   placeholder   String
-  sortOrder     Int             @unique @map("sort_order")
-  contactForm   ContactForm     @relation(fields: [contactFormId], references: [id], onDelete: Cascade)
-  createdAt     DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt     DateTime        @updatedAt @map("updated_at") @db.Timestamptz(6)
-  updatedBy     String          @default("system") @map("updated_by")
+  sortOrder     Int              @unique @map("sort_order")
+  contactForm   ContactForm      @relation(fields: [contactFormId], references: [id], onDelete: Cascade)
+  createdAt     DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime         @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy     String           @default("system") @map("updated_by")
 
   @@map("contact_form_fields")
 }
