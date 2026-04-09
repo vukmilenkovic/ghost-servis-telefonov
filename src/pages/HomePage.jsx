@@ -12,7 +12,7 @@ function HomePage() {
 
   return (
     <>
-      <HeroSection hero={content.hero} ctas={content.ctas} bookingForm={content.bookingForm} />
+      <HeroSection hero={content.hero} ctas={content.ctas} />
       <StatsSection stats={content.stats} />
       <ServicesSection
         section={content.servicesSection}
