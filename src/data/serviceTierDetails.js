@@ -14,8 +14,8 @@ export const serviceTierDetailsBySlug = {
         partLabel: 'New Genuine Apple OLED',
         description:
           'Najvisji nivo z originalnim panelom za najboljso svetilnost, barvno natancnost in odziv na dotik.',
-        imageSrc: null,
-        imageAlt: 'Diamond tier',
+        imageSrc: '/images/tiers/Ghost_diamond_tier.png',
+        imageAlt: 'Diamond tier ilustracija z ghost maskoto',
         fallbackLabel: 'DM',
         accent: '#2e8d49',
       },
@@ -25,8 +25,8 @@ export const serviceTierDetailsBySlug = {
         partLabel: 'Refurbished Genuine OLED',
         description:
           'Originalna osnova z obnovljenim panelom, zelo blizu tovarniski izkusnji in odlicno razmerje kakovost/cena.',
-        imageSrc: null,
-        imageAlt: 'Platinum tier',
+        imageSrc: '/images/tiers/Ghost_Platinum_tier.png',
+        imageAlt: 'Platinum tier ilustracija z ghost maskoto',
         fallbackLabel: 'PT',
         accent: '#3f9073',
       },
@@ -36,8 +36,8 @@ export const serviceTierDetailsBySlug = {
         partLabel: 'Soft OLED',
         description:
           'Fleksibilna OLED izvedba z zelo dobro sliko in prijetnim odzivom. Dobra izbira za vsakodnevno uporabo.',
-        imageSrc: null,
-        imageAlt: 'Gold tier',
+        imageSrc: '/images/tiers/Ghost_Gold_tier.png',
+        imageAlt: 'Gold tier ilustracija z ghost maskoto',
         fallbackLabel: 'GD',
         accent: '#8b7a2f',
       },
@@ -47,11 +47,14 @@ export const serviceTierDetailsBySlug = {
         partLabel: 'Hard OLED / LCD',
         description:
           'Najbolj dostopen nivo za hitro in budget-prijazno popravilo, primeren ko je prioriteta nizja cena.',
-        imageSrc: null,
-        imageAlt: 'Silver tier',
+        imageSrc: '/images/tiers/Ghost_silver_tier.png',
+        imageAlt: 'Silver tier ilustracija z ghost maskoto',
         fallbackLabel: 'SV',
         accent: '#6a7c55',
       },
     ],
   },
 }
+
+
+

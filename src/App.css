@@ -1114,6 +1114,8 @@ textarea:focus {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.85rem;
+  justify-items: center;
+  align-items: start;
 }
 
 .service-tier-card {
@@ -1122,6 +1124,7 @@ textarea:focus {
   background: #fff;
   overflow: hidden;
   display: grid;
+  width: min(100%, 480px);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -1132,8 +1135,8 @@ textarea:focus {
 
 .service-tier-card-media {
   position: relative;
-  height: 200px;
-  padding: 0.55rem;
+  height: 248px;
+  padding: 0.55rem 0.85rem;
   background:
     radial-gradient(
       circle at 10% 8%,
@@ -1151,7 +1154,11 @@ textarea:focus {
 }
 
 .service-tier-card-media img {
-  object-fit: cover;
+  display: block;
+  width: 94%;
+  margin-inline: auto;
+  object-fit: contain;
+  object-position: center top;
 }
 
 .service-tier-card-fallback {
